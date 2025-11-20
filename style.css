@@ -1,0 +1,175 @@
+<style>
+:root {
+  /* Colores primarios: Rojo (Supermercado), Verde (éxito/frescura) */
+  --primary: #CC0000;    /* Rojo distintivo */
+  --dark: #A00000;       /* Rojo más oscuro para hover/nav */
+  --success: #008000;    /* Verde fuerte para ofertas/agregar al carrito */
+  --danger: #333333;     /* Negro/gris oscuro para eliminar/texto fuerte */
+  --light-bg: #f5f5f5;   /* Fondo muy claro, casi blanco */
+  --text-dark: #333333;  /* Texto negro */
+  --border-color: #e0e0e0; /* Gris muy suave para bordes */
+}
+/* Cambiamos Arial por una pila de fuentes más modernas y por defecto */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background: var(--light-bg);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+header {
+  background: var(--primary);
+  color: #fff;
+  padding: 20px 16px;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+nav {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  padding: 10px;
+  background: var(--dark); /* Barra de navegación en rojo oscuro */
+  flex-wrap: wrap;
+}
+/* Botones de navegación con estilo contrastante */
+nav button {
+  background: #fff; /* Fondo blanco */
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--text-dark);
+  transition: background 0.2s, transform 0.1s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+nav button:hover {
+  background: var(--primary);
+  color: #fff;
+  transform: translateY(-1px);
+}
+.container {
+  max-width: 1200px;
+  margin: 25px auto;
+  padding: 0 20px;
+}
+section { display: none; }
+section.active { display: block; }
+section h2 {
+    color: var(--primary); /* Títulos de sección en rojo */
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+}
+/* Estructura de filas para tarjetas */
+.row { 
+    display: flex; 
+    gap: 20px; 
+    flex-wrap: wrap; 
+    margin-bottom: 10px; /* Espacio entre filas de productos */
+} 
+/* Tarjetas de producto: Fondo limpio, sombra suave */
+.card {
+  background: #fff;
+  border: 1px solid var(--border-color); /* Borde sutil */
+  padding: 15px;
+  border-radius: 8px;
+  flex: 1 1 280px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); /* Sombra más discreta */
+  transition: 0.3s;
+  margin-bottom: 10px; /* Reducido para que las tarjetas estén más cerca */
+}
+.card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+  transform: translateY(-1px);
+}
+.card img {
+  width: 100px; /* Imagen ligeramente más pequeña */
+  height: 100px;
+  object-fit: contain;
+  border: 1px solid #f0f0f0; /* Borde de imagen muy claro */
+  padding: 8px;
+  background: #fff;
+  border-radius: 4px;
+}
+/* Estilo del precio dentro de la tarjeta */
+.card .product-price {
+    font-size: 1.2em;
+    color: var(--primary); /* Precio destacado en rojo */
+    font-weight: 800;
+    margin-top: 8px;
+}
+/* Formularios */
+input, select, textarea, button { font-family: inherit; }
+input, select, textarea {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 8px;
+}
+input:focus, select:focus, textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.1);
+}
+/* Botones de acción */
+.btn {
+  padding: 10px 18px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: 0.2s;
+}
+.btn-primary {background: var(--primary);color: #fff;}
+.btn-primary:hover {background: var(--dark);}
+.btn-success {background: var(--success);color: #fff;}
+.btn-success:hover {background: #006400;} /* Verde más oscuro */
+.btn-danger {background: var(--danger);color: #fff;}
+.btn-danger:hover {background: #222222;}
+
+.small, .muted {
+    color: #777; /* Gris neutro */
+    font-size: 14px;
+}
+.flex { display: flex; gap: 8px; align-items: center; }
+
+/* Títulos de Categoría en el catálogo */
+#productos h3 {
+    color: var(--text-dark); /* Títulos de categoría más sobrios (negro/gris oscuro) */
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 5px;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+/* Carrusel y otros componentes... (mantienen el estilo anterior, usando la nueva paleta) */
+.controls { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 15px; }
+.badge { background: var(--primary); color: #fff; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 700;}
+.carousel {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.carousel-item img { height: 280px; object-fit: cover; }
+/* ... (el resto de reglas no modificadas) */
+/* Media Query para responsividad de tarjetas */
+@media (max-width: 700px) {
+    .card { flex-direction: column; align-items: flex-start; }
+    .card img { width: 100%; height: 160px; }
+}
+</style>
