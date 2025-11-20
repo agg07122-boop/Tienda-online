@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Administrador</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h2>Panel Administrador</h2>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="admin.html">Administrador</a>
+  </nav>
+</header>
+
+<div class="container">
+  <h2>Agregar producto</h2>
+
+  <input id="nombre" type="text" placeholder="Nombre del producto">
+  <input id="precio" type="text" placeholder="Precio">
+  <input id="img" type="text" placeholder="Link de la imagen">
+  <button onclick="agregar()">Agregar producto</button>
+
+  <h2>Productos agregados</h2>
+  <div id="lista"></div>
+</div>
+
+<script>
+function cargar() {
+  let productos = JSON.parse(localStorage.getItem("productos")) || [];
+  let lista = document.getElementById("lista");
+  lista.innerHTML = "";
+
+  productos.forEach((p, index) => {
+    lista.innerHTML += `
+      <div class="card">
+        <img src="${p.img}">
+        <h3>${p.nombre}</h3>
+        <p>${p.precio}</p>
+        <button style="background:red" onclick="borrar(${index})">Eliminar</button>
+      </div>
+    `;
+  });
+}
+
+function agregar() {
+  let nombre = document.getElementById("nombre").value;
+  let precio = document.getElementById("precio").value;
+  let img = document.getElementById("img").value;
+
+  if (!nombre || !precio || !img) {
+    alert("Completa todos los campos");
+    return;
+  }
+
+  let productos = JSON.parse(localStorage.getItem("productos")) || [];
+
+  productos.push({ nombre, precio, img });
+
+  localStorage.setItem("productos", JSON.stringify(productos));
+
+  document.getElementById("nombre").value = "";
+  document.getElementById("precio").value = "";
+  document.getElementById("img").value = "";
+
+  cargar();
+}
+
+function borrar(i) {
+  let productos = JSON.parse(localStorage.getItem("productos")) || [];
+  productos.splice(i, 1);
+  localStorage.setItem("productos", JSON.stringify(productos));
+  cargar();
+}
+
+cargar();
+</script>
+
+</body>
+</html>
