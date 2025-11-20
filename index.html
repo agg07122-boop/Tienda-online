@@ -6,14 +6,14 @@
 <title>Mi Súper Online</title>
 <style>
 :root {
-  /* Colores primarios más vivos y accesibles */
-  --primary: #3498db; /* Azul claro/medio */
-  --dark: #2980b9; /* Azul más oscuro */
-  --success: #2ecc71; /* Verde esmeralda */
-  --danger: #e74c3c; /* Rojo suave */
-  --light-bg: #ecf0f1; /* Fondo muy claro */
-  --text-dark: #34495e; /* Texto oscuro pero no negro puro */
-  --border-color: #bdc3c7; /* Gris muy suave para bordes */
+  /* Colores primarios: Rojo (Supermercado), Verde (éxito/frescura) */
+  --primary: #CC0000;    /* Rojo distintivo Chedraui-like */
+  --dark: #A00000;       /* Rojo más oscuro para hover/nav */
+  --success: #008000;    /* Verde fuerte para ofertas/agregar al carrito */
+  --danger: #333333;     /* Negro/gris oscuro para eliminar/texto fuerte */
+  --light-bg: #f5f5f5;   /* Fondo muy claro, casi blanco */
+  --text-dark: #333333;  /* Texto negro */
+  --border-color: #e0e0e0; /* Gris muy suave para bordes */
 }
 /* Cambiamos Arial por una pila de fuentes más modernas y por defecto */
 body {
@@ -21,34 +21,34 @@ body {
   margin: 0;
   background: var(--light-bg);
   color: var(--text-dark);
-  line-height: 1.6; /* Aumentar el espaciado para mejor lectura */
+  line-height: 1.6;
 }
 header {
   background: var(--primary);
   color: #fff;
-  padding: 20px 16px; /* Más padding para que respire */
+  padding: 20px 16px;
   text-align: center;
-  font-size: 28px; /* Título más grande */
+  font-size: 28px;
   font-weight: 800;
   letter-spacing: 0.5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 nav {
   display: flex;
-  gap: 4px; /* Menos espacio entre botones */
+  gap: 4px;
   justify-content: center;
   padding: 10px;
-  background: var(--dark);
-  flex-wrap: wrap; /* Para mejor respuesta en móvil */
+  background: var(--dark); /* Barra de navegación en rojo oscuro */
+  flex-wrap: wrap;
 }
-/* Botones de navegación con estilo más plano y moderno */
+/* Botones de navegación con estilo contrastante */
 nav button {
-  background: #f7f7f7; 
+  background: #fff; /* Fondo blanco */
   border: none;
   padding: 8px 16px;
-  border-radius: 4px; /* Bordes más rectos */
+  border-radius: 4px;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-dark);
   transition: background 0.2s, transform 0.1s;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -59,64 +59,77 @@ nav button:hover {
   transform: translateY(-1px);
 }
 .container {
-  max-width: 1200px; /* Contenedor un poco más ancho */
-  margin: 25px auto; /* Más margen */
+  max-width: 1200px;
+  margin: 25px auto;
   padding: 0 20px;
 }
 section { display: none; }
 section.active { display: block; }
 section h2 {
-    color: var(--primary); /* Color en los títulos de sección */
-    border-bottom: 2px solid var(--border-color); /* Separador suave */
+    color: var(--primary); /* Títulos de sección en rojo */
+    border-bottom: 2px solid var(--border-color);
     padding-bottom: 8px;
     margin-bottom: 20px;
 }
-/* La clase 'row' se aplicará a los contenedores internos de cada categoría */
-.row { display: flex; gap: 20px; flex-wrap: wrap; } 
-/* Tarjetas de producto */
+/* Estructura de filas para tarjetas */
+.row { 
+    display: flex; 
+    gap: 20px; 
+    flex-wrap: wrap; 
+    margin-bottom: 10px; /* Espacio entre filas de productos */
+} 
+/* Tarjetas de producto: Fondo limpio, sombra suave */
 .card {
   background: #fff;
-  border: none; /* Eliminar borde para un diseño más limpio */
+  border: 1px solid var(--border-color); /* Borde sutil */
   padding: 15px;
-  border-radius: 8px; /* Bordes redondeados modernos */
-  flex: 1 1 280px; /* Tamaño base un poco más grande */
+  border-radius: 8px;
+  flex: 1 1 280px;
   display: flex;
   gap: 15px;
   align-items: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Sombra suave y prominente */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); /* Sombra más discreta */
   transition: 0.3s;
-  margin-bottom: 20px; /* Espacio extra para separación de tarjetas */
+  margin-bottom: 10px; /* Reducido para que las tarjetas estén más cerca */
 }
 .card:hover {
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15); /* Sombra al pasar el ratón */
-  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+  transform: translateY(-1px);
 }
 .card img {
   width: 120px; /* Imagen un poco más grande */
   height: 100px;
   object-fit: contain;
-  border: none;
+  border: 1px solid #f0f0f0; /* Borde de imagen muy claro */
   padding: 8px;
-  background: #fff; /* Fondo blanco para las imágenes */
+  background: #fff;
   border-radius: 4px;
+}
+/* Estilo del precio dentro de la tarjeta */
+.card .product-price {
+    font-size: 1.2em;
+    color: var(--primary); /* Precio destacado en rojo */
+    font-weight: 800;
+    margin-top: 8px;
 }
 /* Formularios */
 input, select, textarea, button { font-family: inherit; }
 input, select, textarea {
-  padding: 10px; /* Más padding en campos */
+  padding: 10px;
   border-radius: 4px;
   border: 1px solid var(--border-color);
   width: 100%;
   box-sizing: border-box;
-  margin-bottom: 8px; /* Espacio entre campos */
+  margin-bottom: 8px;
 }
 input:focus, select:focus, textarea:focus {
     border-color: var(--primary);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.1);
 }
+/* Botones de acción */
 .btn {
-  padding: 10px 18px; /* Más padding */
+  padding: 10px 18px;
   border-radius: 4px;
   border: none;
   cursor: pointer;
@@ -127,26 +140,26 @@ input:focus, select:focus, textarea:focus {
 .btn-primary {background: var(--primary);color: #fff;}
 .btn-primary:hover {background: var(--dark);}
 .btn-success {background: var(--success);color: #fff;}
-.btn-success:hover {background: #27ae60;}
+.btn-success:hover {background: #006400;} /* Verde más oscuro */
 .btn-danger {background: var(--danger);color: #fff;}
-.btn-danger:hover {background: #c0392b;}
+.btn-danger:hover {background: #222222;}
 
 .small, .muted {
-    color: #7f8c8d; /* Gris más suave */
+    color: #777; /* Gris neutro */
     font-size: 14px;
 }
 .flex { display: flex; gap: 8px; align-items: center; }
-/* Ajustes de margen para la nueva estructura de categorías */
-#productos, #listaCarrito, #userOrders, #listaSoporte, #adminProducts, #adminPromos { margin-top: 5px; } 
 
-.controls { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 15px; }
-.center { text-align: center; }
-.modal-bg { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); display: none; align-items: center; justify-content: center; z-index: 60; }
-.modal { background: #fff; padding: 25px; border-radius: 12px; max-width: 520px; width: 92%; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); }
-.modal h3 { margin-top: 0; }
-.info-line { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed #e0e0e0; }
-footer { padding: 20px; text-align: center; color: #7f8c8d; font-size: 14px; margin-top: 30px; border-top: 1px solid #e0e0e0; }
-.badge { background: var(--danger); color: #fff; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 700;}
+/* Títulos de Categoría en el catálogo */
+#productos h3 {
+    color: var(--text-dark); /* Títulos de categoría más sobrios (negro/gris oscuro) */
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 5px;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    font-weight: 700;
+}
 /* Carrusel */
 .carousel {
   position: relative;
@@ -184,12 +197,12 @@ footer { padding: 20px; text-align: center; color: #7f8c8d; font-size: 14px; mar
 <header>Mi Súper Online</header>
 
 <nav>
-  <button onclick="showSection('inicio')">Inicio</button>
-  <button onclick="showSection('carrito')">Carrito <span id="cartCount" class="badge"></span></button>
-  <button onclick="showSection('registro')">Registro / Login</button>
-  <button onclick="showSection('miCuenta')">Mi Cuenta</button>
-  <button onclick="showSection('soporte')">Soporte</button>
-  <button onclick="showSection('admin')">Administrador</button>
+  <button onclick="showSection('inicio')">Inicio</button>
+  <button onclick="showSection('carrito')">Carrito <span id="cartCount" class="badge"></span></button>
+  <button onclick="showSection('registro')">Registro / Login</button>
+  <button onclick="showSection('miCuenta')">Mi Cuenta</button>
+  <button onclick="showSection('soporte')">Soporte</button>
+  <button onclick="showSection('admin')">Administrador</button>
 </nav>
 
 <div class="container">
@@ -197,17 +210,17 @@ footer { padding: 20px; text-align: center; color: #7f8c8d; font-size: 14px; mar
 <section id="inicio" class="active">
 <h2>Promociones</h2>
 <div class="carousel">
-  <div class="carousel-inner" id="carouselInner"></div>
-  <div class="carousel-controls">
-    <button onclick="prevSlide()">‹</button>
-    <button onclick="nextSlide()">›</button>
-  </div>
+  <div class="carousel-inner" id="carouselInner"></div>
+  <div class="carousel-controls">
+    <button onclick="prevSlide()">‹</button>
+    <button onclick="nextSlide()">›</button>
+  </div>
 </div>
 
 <h2>Catálogo de Productos</h2>
 <div class="controls">
-  <input id="search" placeholder="Buscar producto..." oninput="renderProducts()" style="max-width:380px">
-  <select id="filterCat" onchange="renderProducts()" style="max-width:220px"></select>
+  <input id="search" placeholder="Buscar producto..." oninput="renderProducts()" style="max-width:380px">
+  <select id="filterCat" onchange="renderProducts()" style="max-width:220px"></select>
 </div>
 <div id="productos"></div>
 </section>
@@ -217,52 +230,52 @@ footer { padding: 20px; text-align: center; color: #7f8c8d; font-size: 14px; mar
 <div id="listaCarrito"></div>
 
 <div style="margin-top:12px;max-width:520px">
-  <h3>Dirección de entrega</h3>
-  <textarea id="direccionEntrega" placeholder="Escribe tu dirección..." rows="2"></textarea>
+  <h3>Dirección de entrega</h3>
+  <textarea id="direccionEntrega" placeholder="Escribe tu dirección..." rows="2"></textarea>
 
-  <h3 style="margin-top:12px">Método de pago</h3>
-  <select id="metodoPago" onchange="renderPagoExtra()">
-    <option value="efectivo">Efectivo contra entrega</option>
-    <option value="tarjeta">Tarjeta de crédito/débito</option>
-  </select>
-  <div id="pagoExtra" style="margin-top:8px"></div>
+  <h3 style="margin-top:12px">Método de pago</h3>
+  <select id="metodoPago" onchange="renderPagoExtra()">
+    <option value="efectivo">Efectivo contra entrega</option>
+    <option value="tarjeta">Tarjeta de crédito/débito</option>
+  </select>
+  <div id="pagoExtra" style="margin-top:8px"></div>
 
-  <h3 style="margin-top:12px">Entrega</h3>
-  <select id="tipoEntrega" onchange="renderEntregaExtra()">
-    <option value="domicilio">Envío a domicilio</option>
-    <option value="tienda">Recoger en tienda</option>
-  </select>
-  <div id="entregaExtra" style="margin-top:8px"></div>
+  <h3 style="margin-top:12px">Entrega</h3>
+  <select id="tipoEntrega" onchange="renderEntregaExtra()">
+    <option value="domicilio">Envío a domicilio</option>
+    <option value="tienda">Recoger en tienda</option>
+  </select>
+  <div id="entregaExtra" style="margin-top:8px"></div>
 
-  <div style="display:flex;justify-content:space-between;margin-top:12px">
-    <button class="btn btn-primary" onclick="checkout()">Confirmar Pedido</button>
-    <button class="btn btn-danger" onclick="cancelOrder()">Cancelar Pedido</button>
-  </div>
+  <div style="display:flex;justify-content:space-between;margin-top:12px">
+    <button class="btn btn-primary" onclick="checkout()">Confirmar Pedido</button>
+    <button class="btn btn-danger" onclick="cancelOrder()">Cancelar Pedido</button>
+  </div>
 </div>
 </section>
 
 <section id="registro">
 <h2>Registro de Usuario</h2>
 <div style="max-width:420px">
-  <input id="regUser" placeholder="Usuario (email o nombre)">
-  <input id="regPass" placeholder="Contraseña" type="password">
-  <button class="btn btn-success" onclick="register()">Crear cuenta</button>
-  <div style="height:12px"></div>
-  <h3>Iniciar sesión</h3>
-  <input id="loginUser" placeholder="Usuario">
-  <input id="loginPass" placeholder="Contraseña" type="password">
-  <button class="btn btn-primary" onclick="login()">Entrar</button>
-  <div id="loginMsg" class="small muted" style="margin-top:8px"></div>
+  <input id="regUser" placeholder="Usuario (email o nombre)">
+  <input id="regPass" placeholder="Contraseña" type="password">
+  <button class="btn btn-success" onclick="register()">Crear cuenta</button>
+  <div style="height:12px"></div>
+  <h3>Iniciar sesión</h3>
+  <input id="loginUser" placeholder="Usuario">
+  <input id="loginPass" placeholder="Contraseña" type="password">
+  <button class="btn btn-primary" onclick="login()">Entrar</button>
+  <div id="loginMsg" class="small muted" style="margin-top:8px"></div>
 </div>
 </section>
 
 <section id="miCuenta">
 <h2>Mi Cuenta</h2>
 <div id="userArea" class="muted">
-  <div id="userInfo"></div>
-  <div style="margin-top:10px">
-    <button class="btn" onclick="logout()" style="background:#eee">Cerrar sesión</button>
-  </div>
+  <div id="userInfo"></div>
+  <div style="margin-top:10px">
+    <button class="btn" onclick="logout()" style="background:#eee">Cerrar sesión</button>
+  </div>
 </div>
 <h3 style="margin-top:18px">Mis pedidos</h3>
 <div id="userOrders"></div>
@@ -271,12 +284,12 @@ footer { padding: 20px; text-align: center; color: #7f8c8d; font-size: 14px; mar
 <section id="soporte">
 <h2>Soporte</h2>
 <div style="max-width:520px">
-  <textarea id="soporteMsg" placeholder="Describe tu problema o pregunta" rows="4"></textarea>
-  <div style="display:flex;gap:8px;margin-top:8px">
-    <button class="btn btn-success" onclick="sendSupport()">Enviar</button>
-    <button class="btn" onclick="renderSupport()" style="background:#eee">Ver mensajes</button>
-    <button class="btn btn-primary" onclick="alert('Conectando con un asesor...')">Habla con un asesor</button>
-  </div>
+  <textarea id="soporteMsg" placeholder="Describe tu problema o pregunta" rows="4"></textarea>
+  <div style="display:flex;gap:8px;margin-top:8px">
+    <button class="btn btn-success" onclick="sendSupport()">Enviar</button>
+    <button class="btn" onclick="renderSupport()" style="background:#eee">Ver mensajes</button>
+    <button class="btn btn-primary" onclick="alert('Conectando con un asesor...')">Habla con un asesor</button>
+  </div>
 </div>
 <div id="listaSoporte" style="margin-top:12px"></div>
 </section>
@@ -284,36 +297,36 @@ footer { padding: 20px; text-align: center; color: #7f8c8d; font-size: 14px; mar
 <section id="admin">
 <h2>Administrador</h2>
 <div id="adminLoginArea" style="max-width:400px">
-  <input id="adminUser" placeholder="Usuario">
-  <input id="adminPass" placeholder="Contraseña" type="password">
-  <button class="btn btn-primary" onclick="adminLogin()">Entrar</button>
-  <div id="adminMsg" class="small muted" style="margin-top:8px"></div>
+  <input id="adminUser" placeholder="Usuario">
+  <input id="adminPass" placeholder="Contraseña" type="password">
+  <button class="btn btn-primary" onclick="adminLogin()">Entrar</button>
+  <div id="adminMsg" class="small muted" style="margin-top:8px"></div>
 </div>
 
 <div id="adminControls" style="display:none;max-width:520px">
-  <h3>Agregar nueva categoría</h3>
-  <input id="newCat" placeholder="Nombre categoría">
-  <button class="btn btn-success" onclick="addCategory()">Agregar categoría</button>
+  <h3>Agregar nueva categoría</h3>
+  <input id="newCat" placeholder="Nombre categoría">
+  <button class="btn btn-success" onclick="addCategory()">Agregar categoría</button>
 
-  <h3 style="margin-top:12px">Agregar/Editar producto</h3>
-  <input id="adminName" placeholder="Nombre del producto">
-  <input id="adminPrice" placeholder="Precio" type="number">
-  <input id="adminImg" placeholder="URL de imagen">
-  <select id="adminCat"></select>
-  <input type="hidden" id="editProductId">
-  <div style="margin-top:10px;display:flex;gap:8px">
-    <button class="btn btn-success" onclick="adminAddProduct()">Agregar/Actualizar</button>
-    <button class="btn" onclick="renderAdminProducts()" style="background:#eee">Ver productos</button>
-  </div>
+  <h3 style="margin-top:12px">Agregar/Editar producto</h3>
+  <input id="adminName" placeholder="Nombre del producto">
+  <input id="adminPrice" placeholder="Precio" type="number">
+  <input id="adminImg" placeholder="URL de imagen">
+  <select id="adminCat"></select>
+  <input type="hidden" id="editProductId">
+  <div style="margin-top:10px;display:flex;gap:8px">
+    <button class="btn btn-success" onclick="adminAddProduct()">Agregar/Actualizar</button>
+    <button class="btn" onclick="renderAdminProducts()" style="background:#eee">Ver productos</button>
+  </div>
 
-  <h3 style="margin-top:16px;">Administrar Promociones</h3>
-  <input id="promoImg" placeholder="URL imagen" oninput="previewPromo()">
-  <input id="promoText" placeholder="Texto promoción">
-  <div style="margin-top:6px;">
-    <img id="promoPreview" src="" style="max-width:100%;height:120px;display:none;border-radius:6px;margin-bottom:6px;">
-  </div>
-  <button class="btn btn-success" onclick="addPromo()" style="margin-top:6px;">Agregar promoción</button>
-  <div id="adminPromos" style="margin-top:12px;"></div>
+  <h3 style="margin-top:16px;">Administrar Promociones</h3>
+  <input id="promoImg" placeholder="URL imagen" oninput="previewPromo()">
+  <input id="promoText" placeholder="Texto promoción">
+  <div style="margin-top:6px;">
+    <img id="promoPreview" src="" style="max-width:100%;height:120px;display:none;border-radius:6px;margin-bottom:6px;">
+  </div>
+  <button class="btn btn-success" onclick="addPromo()" style="margin-top:6px;">Agregar promoción</button>
+  <div id="adminPromos" style="margin-top:12px;"></div>
 </div>
 <div id="adminProducts" style="margin-top:12px; display:none"></div>
 </section>
@@ -323,7 +336,7 @@ footer { padding: 20px; text-align: center; color: #7f8c8d; font-size: 14px; mar
 <footer>Simulador creado para práctica — todo funciona en tu navegador (localStorage)</footer>
 
 <div id="modalBg" class="modal-bg" onclick="closeModal()">
-  <div class="modal" id="modalContent" onclick="event.stopPropagation()"></div>
+  <div class="modal" id="modalContent" onclick="event.stopPropagation()"></div>
 </div>
 
 <script>
@@ -337,13 +350,19 @@ const STORAGE_PROMOS="sim_promos_v5";
 
 let productos=JSON.parse(localStorage.getItem(STORAGE_PRODUCTS)||"null");
 if(!productos){
-  productos=[
-    {id:genId(),nombre:"Agua Ciel 1L",precio:12.5,imagen:"https://i.imgur.com/8Km9tLL.png",categoria:"Bebidas"},
-    {id:genId(),nombre:"Papas Fritas",precio:18,imagen:"https://i.imgur.com/5qHk3r7.png",categoria:"Snacks"},
-    {id:genId(),nombre:"Arroz 1kg",precio:35.5,imagen:"https://i.imgur.com/2YbKZ8V.png",categoria:"Abarrotes"},
-    {id:genId(),nombre:"Leche 1L",precio:22,imagen:"https://i.imgur.com/9Qw8g5b.png",categoria:"Lácteos"}
-  ];
-  localStorage.setItem(STORAGE_PRODUCTS,JSON.stringify(productos));
+  productos=[
+    {id:genId(),nombre:"Agua Ciel 1L",precio:12.5,imagen:"https://i.imgur.com/8Km9tLL.png",categoria:"Bebidas"},
+    {id:genId(),nombre:"Papas Fritas Sabritas 170g",precio:38.90,imagen:"https://i.imgur.com/vHq0gWk.png",categoria:"Snacks"},
+    {id:genId(),nombre:"Arroz Blanco 1kg",precio:35.5,imagen:"https://i.imgur.com/2YbKZ8V.png",categoria:"Abarrotes"},
+    {id:genId(),nombre:"Leche Deslactosada 1L",precio:24.50,imagen:"https://i.imgur.com/9Qw8g5b.png",categoria:"Lácteos"},
+    {id:genId(),nombre:"Yogur Natural",precio:15.00,imagen:"https://i.imgur.com/G5y7kYc.png",categoria:"Lácteos"},
+    {id:genId(),nombre:"Refresco Coca-Cola 600ml",precio:19.00,imagen:"https://i.imgur.com/L13sD3O.png",categoria:"Bebidas"},
+    {id:genId(),nombre:"Galletas Marías",precio:12.90,imagen:"https://i.imgur.com/N7b0qBv.png",categoria:"Abarrotes"},
+    {id:genId(),nombre:"Cereal Choco Krispis",precio:55.00,imagen:"https://i.imgur.com/O6tS0vV.png",categoria:"Abarrotes"},
+    {id:genId(),nombre:"Jugo de Naranja 2L",precio:45.00,imagen:"https://i.imgur.com/0zR2vHh.png",categoria:"Bebidas"},
+    {id:genId(),nombre:"Queso Oaxaca 400g",precio:85.00,imagen:"https://i.imgur.com/d9jCq3y.png",categoria:"Lácteos"}
+  ];
+  localStorage.setItem(STORAGE_PRODUCTS,JSON.stringify(productos));
 }
 let users=JSON.parse(localStorage.getItem(STORAGE_USERS)||"[]");
 let currentUser=JSON.parse(localStorage.getItem(STORAGE_CURRENT)||"null");
@@ -370,13 +389,13 @@ function updateCartCount(){document.getElementById("cartCount").innerText=curren
 
 // ====== NAVEGACION ======
 function showSection(id){
-  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-  const sec=document.getElementById(id); if(sec)sec.classList.add("active");
-  if((id==="carrito"||id==="miCuenta"||id==="soporte")&&!currentUser){alert("Debes iniciar sesión"); showSection("registro"); return;}
-  if(id==="inicio"){ renderProducts(); renderPromo(); }
-  if(id==="carrito") renderCart();
-  if(id==="miCuenta") renderUserArea();
-  if(id==="admin" && adminLogged){ renderAdminProducts(); renderPromosAdmin(); renderCategories(); }
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  const sec=document.getElementById(id); if(sec)sec.classList.add("active");
+  if((id==="carrito"||id==="miCuenta"||id==="soporte")&&!currentUser){alert("Debes iniciar sesión"); showSection("registro"); return;}
+  if(id==="inicio"){ renderProducts(); renderPromo(); }
+  if(id==="carrito") renderCart();
+  if(id==="miCuenta") renderUserArea();
+  if(id==="admin" && adminLogged){ renderAdminProducts(); renderPromosAdmin(); renderCategories(); }
 }
 
 // ====== PRODUCTOS (VERSIÓN FINAL CON FILTRO INTELIGENTE) ======
@@ -409,11 +428,12 @@ function renderProducts(){
         productosArray.forEach(p => {
             const div = document.createElement("div"); 
             div.className = "card";
+            // *** NOTA IMPORTANTE: Se agregó la clase "product-price" al div del precio para el nuevo CSS ***
             div.innerHTML = `<img src="${p.imagen}" alt="${htmlEscape(p.nombre)}" onerror="this.src='https://i.imgur.com/3sL2X0K.png'">
             <div style="flex:1">
             <div style="font-weight:700">${htmlEscape(p.nombre)}</div>
             <div class="small">${htmlEscape(p.categoria)}</div>
-            <div style="margin-top:8px;font-size:16px;color:var(--primary);font-weight:700">$ ${Number(p.precio).toFixed(2)}</div>
+            <div class="product-price">$ ${Number(p.precio).toFixed(2)}</div>
             <button class="btn btn-success" style="margin-top:8px" onclick="addToCart('${p.id}')">Agregar al carrito</button></div>`;
             row.appendChild(div);
         });
@@ -470,37 +490,37 @@ function renderProducts(){
 
 // ====== CARRITO ======
 function addToCart(id){ if(!currentUser){alert("Debes iniciar sesión"); showSection("registro"); return;}
-  let cart=getCart(); const item=cart.find(c=>c.id===id);
-  if(item){item.qty++;} else{cart.push({id,qty:1});} saveCart(cart); updateCartCount(); alert("Producto agregado al carrito");
+  let cart=getCart(); const item=cart.find(c=>c.id===id);
+  if(item){item.qty++;} else{cart.push({id,qty:1});} saveCart(cart); updateCartCount(); alert("Producto agregado al carrito");
 }
 function renderCart(){
-  const cont=document.getElementById("listaCarrito"); cont.innerHTML="";
-  const cart=getCart(); if(cart.length===0){cont.innerHTML="<div class='muted'>Carrito vacío</div>"; return;}
-  cart.forEach(ci=>{ const p=productos.find(pr=>pr.id===ci.id); if(!p)return;
-    const div=document.createElement("div"); div.className="card";
-    div.innerHTML=`<img src="${p.imagen}" alt="${htmlEscape(p.nombre)}">
-    <div style="flex:1">
-    <div style="font-weight:700">${htmlEscape(p.nombre)}</div>
-    <div class="small">Cantidad: ${ci.qty}</div>
-    <div style="margin-top:8px;font-size:16px;color:#111">$ ${(p.precio*ci.qty).toFixed(2)}</div>
-    <button class="btn btn-danger" style="margin-top:6px" onclick="removeFromCart('${ci.id}')">Eliminar</button>
-    </div>`;
-    cont.appendChild(div);
-  });
+  const cont=document.getElementById("listaCarrito"); cont.innerHTML="";
+  const cart=getCart(); if(cart.length===0){cont.innerHTML="<div class='muted'>Carrito vacío</div>"; return;}
+  cart.forEach(ci=>{ const p=productos.find(pr=>pr.id===ci.id); if(!p)return;
+    const div=document.createElement("div"); div.className="card";
+    div.innerHTML=`<img src="${p.imagen}" alt="${htmlEscape(p.nombre)}">
+    <div style="flex:1">
+    <div style="font-weight:700">${htmlEscape(p.nombre)}</div>
+    <div class="small">Cantidad: ${ci.qty}</div>
+    <div class="product-price" style="color:#111">$ ${(p.precio*ci.qty).toFixed(2)}</div>
+    <button class="btn btn-danger" style="margin-top:6px" onclick="removeFromCart('${ci.id}')">Eliminar</button>
+    </div>`;
+    cont.appendChild(div);
+  });
 }
 function removeFromCart(id){let cart=getCart();cart=cart.filter(c=>c.id!==id);saveCart(cart);renderCart();updateCartCount();}
 function renderPagoExtra(){ const p=document.getElementById("pagoExtra"); const val=document.getElementById("metodoPago").value;
-  if(val==="tarjeta"){ p.innerHTML='<input placeholder="Número de tarjeta" type="text">';} else{p.innerHTML="";}
+  if(val==="tarjeta"){ p.innerHTML='<input placeholder="Número de tarjeta" type="text">';} else{p.innerHTML="";}
 }
 function renderEntregaExtra(){ const e=document.getElementById("entregaExtra"); const val=document.getElementById("tipoEntrega").value;
-  if(val==="domicilio"){ e.innerHTML='<input placeholder="Código postal">';} else{e.innerHTML="";}
+  if(val==="domicilio"){ e.innerHTML='<input placeholder="Código postal">';} else{e.innerHTML="";}
 }
 function checkout(){
-  const cart=getCart(); if(cart.length===0){alert("Carrito vacío"); return;}
-  const dir=document.getElementById("direccionEntrega").value.trim(); if(!dir){alert("Agrega dirección"); return;}
-  orders.push({id:genId(),user:currentUser.username,items:cart.map(c=>({id:c.id,qty:c.qty})),direccion:dir,pago:document.getElementById("metodoPago").value,entrega:document.getElementById("tipoEntrega").value,date:new Date().toISOString()});
-  saveOrders(); saveCart([]); updateCartCount(); renderCart();
-  alert("Pedido realizado con éxito");
+  const cart=getCart(); if(cart.length===0){alert("Carrito vacío"); return;}
+  const dir=document.getElementById("direccionEntrega").value.trim(); if(!dir){alert("Agrega dirección"); return;}
+  orders.push({id:genId(),user:currentUser.username,items:cart.map(c=>({id:c.id,qty:c.qty})),direccion:dir,pago:document.getElementById("metodoPago").value,entrega:document.getElementById("tipoEntrega").value,date:new Date().toISOString()});
+  saveOrders(); saveCart([]); updateCartCount(); renderCart();
+  alert("Pedido realizado con éxito");
 }
 function cancelOrder(){ if(confirm("¿Deseas cancelar el pedido?")){saveCart([]);updateCartCount();renderCart();alert("Pedido cancelado");}}
 
@@ -539,23 +559,23 @@ function editProduct(id){const p=productos.find(x=>x.id===id); if(!p)return; doc
 document.getElementById("adminPrice").value=p.precio; document.getElementById("adminImg").value=p.imagen;
 document.getElementById("adminCat").value=p.categoria; document.getElementById("editProductId").value=p.id;}
 function deleteProduct(id){if(confirm("Eliminar producto?")){productos=productos.filter(x=>x.id!==id); saveProducts(); renderAdminProducts();}}
-function adminAddProduct(){ 
-  const id=document.getElementById("editProductId").value.trim(); 
-  const n=document.getElementById("adminName").value.trim(); 
-  const p=Number(document.getElementById("adminPrice").value); 
-  const i=document.getElementById("adminImg").value.trim(); 
-  const c=document.getElementById("adminCat").value; 
-  if(!n||!p||!i||!c){alert("Completa los campos"); return;} 
-  if(id){ 
-    const idx=productos.findIndex(x=>x.id===id); 
-    if(idx!==-1){ productos[idx]={id,nombre:n,precio:p,imagen:i,categoria:c}; alert("Producto actualizado correctamente"); } 
-    else{ alert("Error: producto no encontrado"); return; } 
-  } else { productos.push({id:genId(),nombre:n,precio:p,imagen:i,categoria:c}); alert("Producto agregado correctamente"); } 
-  saveProducts(); renderAdminProducts(); 
-  document.getElementById("editProductId").value="";
-  document.getElementById("adminName").value="";
-  document.getElementById("adminPrice").value="";
-  document.getElementById("adminImg").value="";
+function adminAddProduct(){ 
+  const id=document.getElementById("editProductId").value.trim(); 
+  const n=document.getElementById("adminName").value.trim(); 
+  const p=Number(document.getElementById("adminPrice").value); 
+  const i=document.getElementById("adminImg").value.trim(); 
+  const c=document.getElementById("adminCat").value; 
+  if(!n||!p||!i||!c){alert("Completa los campos"); return;} 
+  if(id){ 
+    const idx=productos.findIndex(x=>x.id===id); 
+    if(idx!==-1){ productos[idx]={id,nombre:n,precio:p,imagen:i,categoria:c}; alert("Producto actualizado correctamente"); } 
+    else{ alert("Error: producto no encontrado"); return; } 
+  } else { productos.push({id:genId(),nombre:n,precio:p,imagen:i,categoria:c}); alert("Producto agregado correctamente"); } 
+  saveProducts(); renderAdminProducts(); 
+  document.getElementById("editProductId").value="";
+  document.getElementById("adminName").value="";
+  document.getElementById("adminPrice").value="";
+  document.getElementById("adminImg").value="";
 }
 function addCategory(){const c=document.getElementById("newCat").value.trim(); if(!c){alert("Escribe un nombre"); return;} if(!categorias.includes(c)){categorias.push(c);alert("Categoría agregada"); renderCategories(); } else{alert("Ya existe");}}
 function renderCategories(){const sel=document.getElementById("adminCat"); sel.innerHTML=""; categorias.forEach(c=>{sel.innerHTML+=`<option>${c}</option>`;});}
